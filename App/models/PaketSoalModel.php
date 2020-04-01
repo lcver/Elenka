@@ -32,7 +32,7 @@ class PaketSoalModel extends Controller
              * 
              * display the specified resource data
              */
-            public function show($condition){
+            public function show($condition, $request=[]){
                 switch ($condition) {
                     case 'lastId':
                         $result = Database::table('tbelenka_paket_soal')
@@ -45,9 +45,26 @@ class PaketSoalModel extends Controller
                                                 ->on('tbelenka_paket_soal.idMatapelajaran','tbelenka_matapelajaran.id and idGuru ='.$_SESSION['elenka_adminsession'])
                                                 ->get();
                         break;
-                    default:
-                        $result = [];
+                    case 'siswa':
+                        $result = Database::table('tbelenka_paket_soal')
+                                                ->join('tbelenka_kelas')
+                                                ->on('tbelenka_paket_soal.idKelas','tbelenka_kelas.id')
+                                                ->join('tbelenka_kelas_bagian')
+                                                ->on('tbelenka_paket_soal.idBagian','tbelenka_kelas_bagian.id')
+                                                ->join('tbelenka_matapelajaran')
+                                                ->on('tbelenka_paket_soal.idMatapelajaran','tbelenka_matapelajaran.id and NOT EXISTS (select id from tbelenka_nilai_siswa where tbelenka_nilai_siswa.idPaketSoal = tbelenka_paket_soal.id)')
+                                                ->fetch(['tbelenka_paket_soal.*','tbelenka_kelas.kelas','tbelenka_kelas_bagian.bagian','tbelenka_matapelajaran.pelajaran'])
+                                                ->get();
                         break;
+                    case 'soalsiswa':
+                        $result = Database::table('tbelenka_paket_soal')
+                                                ->join('tbelenka_matapelajaran')
+                                                ->on('tbelenka_paket_soal.id', $request.' and tbelenka_paket_soal.idMatapelajaran = tbelenka_matapelajaran.id')
+                                                ->fetch(['tbelenka_matapelajaran.pelajaran'])
+                                                ->get();
+                    // default:
+                    //     $result = [];
+                    //     break;
                 }
 
                 return $result;
