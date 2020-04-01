@@ -149,6 +149,8 @@ class AdminController extends Controller
 
                     foreach ($Spreadsheet as $key => $value) {
                         if( $key < 1 ) continue;
+
+                        if($value[1]!==""){
                             $data = [
                                 'idPaketSoal' => $res['id'],
                                 'pertanyaan' => $value[1],
@@ -157,16 +159,17 @@ class AdminController extends Controller
                                 'c' => $value[4],
                                 'kunciJawaban' => $value[5],
                             ];
-                        // var_dump($data);
-                        
-                        $result = $this->model('ButirSoalModel')->store($data);
-                        // var_dump($result);die();
+                            // var_dump($data);
+                            
+                            $result = $this->model('ButirSoalModel')->store($data);
+                            // var_dump($result);die();
 
-                        if($result){
-                            Flasher::setFlash('File berhasil diupload', true);
-                        }else{
-                            Flasher::setFlash('Gagal! silakan hubungi Administrator', False);
-                            unlink($target_file);
+                            if($result){
+                                Flasher::setFlash('File berhasil diupload', true);
+                            }else{
+                                Flasher::setFlash('Gagal! silakan hubungi Administrator', False);
+                                unlink($target_file);
+                            }
                         }
                     }
                 }
