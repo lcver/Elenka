@@ -1,4 +1,5 @@
 <?php
+session_start();
 // url
 define('BASEURL','http://localhost/project/Elenka/public_html/');
 
