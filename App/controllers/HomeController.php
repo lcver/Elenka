@@ -70,6 +70,12 @@ class HomeController extends Controller
 
         header('location:'.BASEURL);
     }
+
+    public function logout()
+    {
+        session_destroy();
+        header('location:'.BASEURL.'Admin/index');
+    }
 }
 
 
