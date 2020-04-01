@@ -166,8 +166,10 @@ class AdminController extends Controller
 
     public function auth()
     {
-        $data['admin']=1;
-        $this->view('auth/index',$data);
+        if(!isset($_SESSION['elenka_usersession']) && !isset($_SESSION['elenka_adminsession'])){
+            $data['admin']=1;
+            $this->view('auth/index',$data);
+        }
     }
 
     public function authentication()
