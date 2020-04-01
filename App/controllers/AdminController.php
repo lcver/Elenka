@@ -9,7 +9,36 @@ class AdminController extends Controller
         {
             self::auth();
         }
-        $this->view('admin/index',[],'admin');
+
+        $result = $this->model('NilaiModel')->create();
+        // var_dump($result);die();
+        if(!is_null($result)){
+            $key = array_keys($result);
+
+            $count = count($key);
+            $num = NULL;
+
+            for ($i=0; $i < $count ; $i++) { 
+                if(is_numeric($key[$i])) $num = true;
+            }
+
+            // foreach ($resultkey as $key) {
+            //     if(!is_numeric($key)) $num = false;
+            // }
+                if(!$num):
+                    $data[] = $result;
+                else:
+                    $data = $result;
+                endif;
+            // var_dump($data);
+            // die();
+        }else{
+            $data=[];
+        }
+        // var_dump($data);
+        // die();
+
+        $this->view('admin/index',$data,'admin');
     }
 
     public function arsip()
