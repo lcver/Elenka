@@ -2,3 +2,5 @@
   <div class="content-wrapper">    
     <!-- Main content -->
     <section class="content">
+    <!-- Container -->
+      <div class="container pt-3">

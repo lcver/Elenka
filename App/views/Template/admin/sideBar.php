@@ -18,7 +18,7 @@
         </div>
         <div class="info">
           <a href="#" class="d-block">
-            <?= isset($_SESSION['elenka_authAdmin']) ? $_SESSION['elenka_adminUsername'] : "" ; ?>
+            <?= isset($_SESSION['elenka_adminsession']) ? $_SESSION['elenka_adminname'] : "" ; ?>
           </a>
         </div>
       </div>
@@ -29,7 +29,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="<?=BASEURL?>" class="nav-link">
+            <a href="<?=BASEURL?>admin" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Dashboard
@@ -38,7 +38,7 @@
           </li>
           <li class="nav-header">DOCUMENT</li>
           <li class="nav-item">
-            <a href="<?=BASEURL?>" class="nav-link">
+            <a href="<?=BASEURL?>admin/arsip" class="nav-link">
               <i class="nav-icon fas fa-book-open"></i>
               <p>
                 Bank Soal

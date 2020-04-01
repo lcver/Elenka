@@ -1,3 +1,5 @@
+        </div>
+        <!-- /.container /.pt -->
     </section>
         <!-- /.content -->
 </div>
