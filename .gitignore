@@ -2,7 +2,8 @@
 
 # ignore an entire directory
 public_html/plugins/
-puclic_html/soal/
+public_html/soal/
+App/vendor/
 
 # ignore a file type
 
