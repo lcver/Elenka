@@ -1,37 +1,28 @@
-<?php
-
+<?php 
 /**
  * 
  * call config
  */
-require_once 'config/config.php';
+require_once '../App/config/config.php';
 
 /**
  * 
- * 
- * session start
+ * auto call class
  */
-if(!session_id()) session_start();
-ob_start();
 
-/**
- * 
- * 
- * load all class
- */
 spl_autoload_register(function ($class_name) {
     $class_name = explode('\\', $class_name);
 
-    // Nama folder class
+    // Class folder name
+    $sub="";
     $i = count($class_name)-2;
-    if ( $i > 0){
-        $sub = $class_name[$i];
-
-    }elseif ($i < 0){
-        $sub = "core";
+    if( in_array('Core',$class_name) || $i < 0 ){
+        $sub = "/Core";
     }
-    
-    // Nama class
+
+    // Class name
     $class_name = end($class_name);
-    require_once __DIR__.'\\'.$sub.'\\'.$class_name .'.php';
+    if(file_exists(__DIR__ . $sub .'/'. $class_name .'.php'))
+        require_once __DIR__ . $sub .'/'. $class_name .'.php';
+
 });
