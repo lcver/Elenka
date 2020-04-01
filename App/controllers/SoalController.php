@@ -129,30 +129,31 @@ class SoalController extends Controller
          * fetch data nilai siswa
          */
         $resnilai = $this->model('NilaiModel')->show($id);
+        $data['nilai'] = $resnilai['nilai'];
 
-        if(!is_null($resnilai)){
-            $key = array_keys($resnilai);
+        // if(!is_null($resnilai)){
+        //     $key = array_keys($resnilai);
 
-            $count = count($key);
-            $num = NULL;
+        //     $count = count($key);
+        //     $num = NULL;
 
-            for ($i=0; $i < $count ; $i++) { 
-                if(is_numeric($key[$i])) $num = true;
-            }
+        //     for ($i=0; $i < $count ; $i++) { 
+        //         if(is_numeric($key[$i])) $num = true;
+        //     }
 
-            // foreach ($resultkey as $key) {
-            //     if(!is_numeric($key)) $num = false;
-            // }
-                if(!$num):
-                    $data['nilai'][] = $resnilai;
-                else:
-                    $data['nilai'] = $resnilai;
-                endif;
-            // var_dump($data['nilai']);
-            // die();
-        }else{
-            $data['nilai']=NULL;
-        }
+        //     // foreach ($resultkey as $key) {
+        //     //     if(!is_numeric($key)) $num = false;
+        //     // }
+        //         if(!$num):
+        //             $data['nilai'][] = $resnilai;
+        //         else:
+        //             $data['nilai'] = $resnilai;
+        //         endif;
+        //     // var_dump($data['nilai']);
+        //     // die();
+        // }else{
+        //     $data['nilai']=NULL;
+        // }
 
         $respaket = $this->model('PaketSoalModel')->show('soalsiswa',$id);
         $data['mapel'] = $respaket['pelajaran'];
