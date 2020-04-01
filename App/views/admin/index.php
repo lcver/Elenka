@@ -1,32 +1,19 @@
 <?php
     foreach ($data as $d) {
-        switch ($d['idMatapelajaran']) {
-            case '1':
-                $ppkn=1;
-                break;
-            case '2':
-                $bindo=1;
-                break;
-            case '3':
-                $matematika=1;
-                break;
-            case '4':
-                $sbdp=1;
-                break;
-            case '5':
-                $pjok=1;
-                break;
-        }
-        // if(!is_null($d['ppkn']))
-        //     $ppkn=1;
-        // if(!is_null($d['bindo']))
-        //     $bindo=1;
-        // if(!is_null($d['matematika']))
-        //     $matematika=1;
-        // if(!is_null($d['sbdp']))
-        //     $sbdp=1;
-        // if(!is_null($d['pjok']))
-        //     $pjok=1;
+        if(!is_null($d['ppkn']))
+            $ppkn=1;
+        if(!is_null($d['bindo']))
+            $bindo=1;
+        if(!is_null($d['matematika']))
+            $matematika=1;
+        if(!is_null($d['sbdp']))
+            $sbdp=1;
+        if(!is_null($d['pjok']))
+            $pjok=1;
+        if(!is_null($d['ipa']))
+            $ipa=1;
+        if(!is_null($d['ips']))
+            $ips=1;
     }
 ?>
 <div class="card overflow-auto ">
@@ -63,19 +50,25 @@
                         
                         <td><?=$d['kelas'].' - '.$d['bagian']?></td>
                         <?php if(isset($ppkn)): ?>
-                            <td><?=$d['pelajaran']?></td>
+                            <td><?=$d['ppkn']?></td>
                         <?php endif; ?>
                         <?php if(isset($bindo)): ?>
-                            <td><?=$d['pelajaran']?></td>
+                            <td><?=$d['bindo']?></td>
                         <?php endif; ?>
                         <?php if(isset($matematika)): ?>
-                            <td><?=$d['pelajaran']?></td>
+                            <td><?=$d['matematika']?></td>
                         <?php endif; ?>
                         <?php if(isset($sbdp)): ?>
-                            <td><?=$d['pelajaran']?></td>
+                            <td><?=$d['sbdp']?></td>
                         <?php endif; ?>
                         <?php if(isset($pjok)): ?>
-                            <td><?=$d['pelajaran']?></td>
+                            <td><?=$d['pjok']?></td>
+                        <?php endif; ?>
+                        <?php if(isset($ipa)): ?>
+                            <td><?=$d['ipa']?></td>
+                        <?php endif; ?>
+                        <?php if(isset($ips)): ?>
+                            <td><?=$d['ips']?></td>
                         <?php endif; ?>
                         
                         

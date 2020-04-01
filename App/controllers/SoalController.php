@@ -57,6 +57,7 @@ class SoalController extends Controller
         $result = $this->model('ButirSoalModel')->show($id);
         // var_dump($result[0]);
         // die();
+
         $totalSoal = 0;
         $benar = 0;
         foreach ($result as $d) { $totalSoal++;
@@ -76,11 +77,58 @@ class SoalController extends Controller
             'nilai'      =>$nilai
         ];
         
-        $res = $this->model('NilaiModel')->store($dataNilai);
+        
+        /**
+         * 
+         * store data into
+         * tampil nilai
+         */
+        $res = $this->model('PaketSoalModel')->show('soalsiswa',$id);
+        switch ($res['id']) {
+            case '1':
+                $keyNilai = 'ppkn';
+                break;
+            case '2':
+                $keyNilai = 'bindo';
+                break;
+            case '3':
+                $keyNilai = 'matematika';
+                break;
+            case '4':
+                $keyNilai = 'sbdp';
+                break;
+            case '5':
+                $keyNilai = 'pjok';
+                break;
+            case '6':
+                $keyNilai = 'ipa';
+                break;
+            case '7':
+                $keyNilai = 'ips';
+                break;
+        }
+        $data = [
+            'idSiswa'   => $_SESSION['elenka_usersession'],
+            'idKelas'   => $_SESSION['elenka_userkelas'],
+            'idBagian'  => $_SESSION['elenka_userbagian'],
+            $keyNilai   => $nilai
+        ];
+        
+        $checkTampilNilai = $this->model('TampilNilaiModel')->show($data['idSiswa']);
 
-        if($res===TRUE)
-        {
-            header('location:'.BASEURL.'soal/view_hasil/'.$id);
+        if($checkTampilNilai===NULL){
+            $res = $this->model('TampilNilaiModel')->store($data);
+        }else{
+            $res = $this->model('TampilNilaiModel')->update($checkTampilNilai['id'],$data);
+        }
+
+        if($res===TRUE){
+
+            $res = $this->model('NilaiModel')->store($dataNilai);
+            if($res===TRUE)
+            {
+                header('location:'.BASEURL.'soal/view_hasil/'.$id);
+            }
         }
         
     }

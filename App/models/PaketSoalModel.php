@@ -60,7 +60,7 @@ class PaketSoalModel extends Controller
                         $result = Database::table('tbelenka_paket_soal')
                                                 ->join('tbelenka_matapelajaran')
                                                 ->on('tbelenka_paket_soal.id', $request.' and tbelenka_paket_soal.idMatapelajaran = tbelenka_matapelajaran.id')
-                                                ->fetch(['tbelenka_matapelajaran.pelajaran'])
+                                                ->fetch(['tbelenka_matapelajaran.*'])
                                                 ->get();
                     // default:
                     //     $result = [];

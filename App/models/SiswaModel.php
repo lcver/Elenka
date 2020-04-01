@@ -23,7 +23,11 @@ class SiswaModel extends Controller
              * 
              * display the specified resource data
              */
-            public function show(){}
+            public function show($request){
+                return Database::table('tbelenka_siswa')
+                                        ->where('id',$request)
+                                        ->get();
+            }
             /**
              * 
              * specialy method auth

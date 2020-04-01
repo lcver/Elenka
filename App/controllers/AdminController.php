@@ -10,7 +10,7 @@ class AdminController extends Controller
             self::auth();
         }
 
-        $result = $this->model('NilaiModel')->create();
+        $result = $this->model('TampilNilaiModel')->create();
         // var_dump($result);die();
         if(!is_null($result)){
             $key = array_keys($result);
