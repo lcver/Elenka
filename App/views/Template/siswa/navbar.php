@@ -14,7 +14,7 @@
 
     <div class="navbar-nav ml-auto">
         <span class=" text-gray-dark">             
-            <?= isset($_SESSION['elenka_usersession']) ? $_SESSION['elenka_usernamesession']  : "" ;?> 
+            <?= isset($_SESSION['elenka_usersession']) ? $_SESSION['elenka_username']  : "" ;?> 
         </span>
     </div>
 </div>
