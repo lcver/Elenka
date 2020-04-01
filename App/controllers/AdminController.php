@@ -199,7 +199,6 @@ class AdminController extends Controller
 
     public function logout()
     {
-        unset($_SESSION['elenka_authAdmin']);
         session_destroy();
         header('location:'.BASEURL.'Admin/index');
     }
