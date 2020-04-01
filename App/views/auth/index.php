@@ -4,7 +4,7 @@
 
       <form action="<?=BASEURL?><?=isset($data['admin']) ? "admin" : "home";?>/authentication" method="post">
         <div class="input-group mb-3">
-          <input type="text" name="elenka_username" class="form-control" placeholder="Nis">
+          <input type="text" name="elenka_username" class="form-control" placeholder="<?=isset($data['admin']) ? "Username" : "Nis";?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
