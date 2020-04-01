@@ -7,21 +7,36 @@ namespace App\Core;
  */
 class Controller
 {
-    public function view($view, $data=[])
+    public function view($view, $data=[], $category='user')
     {
         /**
          * 
          * Set Template
          */
-        $template = [
-            'Template/header',
-            'Template/navbar',
-            'Template/sidebar',
-            'Template/contentHeader',
-            $view,
-            'Template/contentFooter',
-            'Template/footer'
-        ];
+
+        if($category==="admin")
+        {
+            $template = [
+                'Template/admin/header',
+                'Template/admin/navbar',
+                'Template/admin/sidebar',
+                'Template/admin/contentHeader',
+                $view,
+                'Template/admin/contentFooter',
+                'Template/admin/footer'
+            ];
+        }
+        elseif($category==="user"){
+            $template = [
+                'Template/siswa/header',
+                'Template/siswa/navbar',
+                'Template/siswa/sidebar',
+                'Template/siswa/contentHeader',
+                $view,
+                'Template/siswa/contentFooter',
+                'Template/siswa/footer'
+            ];
+        }
         $count = count($template);        
 
         /**
