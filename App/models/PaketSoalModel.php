@@ -48,7 +48,7 @@ class PaketSoalModel extends Controller
                     case 'siswa':
                         $result = Database::table('tbelenka_paket_soal')
                                                 ->join('tbelenka_kelas')
-                                                ->on('tbelenka_paket_soal.idKelas','tbelenka_kelas.id')
+                                                ->on('tbelenka_paket_soal.idKelas ='.$_SESSION['elenka_userkelas'].' and tbelenka_paket_soal.idKelas','tbelenka_kelas.id')
                                                 ->join('tbelenka_kelas_bagian')
                                                 ->on('tbelenka_paket_soal.idBagian','tbelenka_kelas_bagian.id')
                                                 ->join('tbelenka_matapelajaran')

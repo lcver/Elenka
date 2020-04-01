@@ -24,6 +24,7 @@ class HomeController extends Controller
                 // foreach ($resultkey as $key) {
                 //     if(!is_numeric($key)) $num = false;
                 // }
+                // var_dump($result);die();
                     if(!$num):
                         $data[] = $result;
                     else:
@@ -31,9 +32,22 @@ class HomeController extends Controller
                     endif;
                 // var_dump($data);
                 // die();
+                foreach ($data as $d) {
+                    if($d['idBagian']!=3)
+                    {
+                        if($d['idBagian']==$_SESSION['elenka_usersessoin'])
+                        {
+                            $data[] = $d;
+                        }
+                        else{
+                            $data[] = $d;
+                        }
+                    }
+                }
             }else{
                 $data=NULL;
             }
+            // var_dump($data);die();
 
             $this->view('home/index', $data);
     }
