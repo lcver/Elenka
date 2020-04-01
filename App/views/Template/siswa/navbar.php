@@ -13,9 +13,10 @@
     </ul>
 
     <div class="navbar-nav ml-auto">
+        <?php if(isset($_SESSION['elenka_usersession'])) : ?>
         <li class="nav-item">
             <span class="nav-link text-gray-dark">             
-                <?= isset($_SESSION['elenka_usersession']) ? $_SESSION['elenka_username']  : "" ;?> 
+                <?= $_SESSION['elenka_username']?> 
             </span>
         </li>
         <!-- <li class="nav-item"></li> -->
@@ -26,6 +27,7 @@
                 <span>Logout</span>
             </a>
         </li>
+        <?php endif; ?>
     </div>
 </div>
 </nav>

@@ -1,14 +1,14 @@
 <?php
     foreach ($data as $d) {
-        if(!is_null($d['ppkn']))
+        if($d['idMatapelajaran']==1)
             $ppkn=1;
-        if(!is_null($d['bindo']))
+        if($d['idMatapelajaran']==2)
             $bindo=1;
-        if(!is_null($d['matematika']))
+        if($d['idMatapelajaran']==3)
             $matematika=1;
-        if(!is_null($d['sbdp']))
+        if($d['idMatapelajaran']==4)
             $sbdp=1;
-        if(!is_null($d['pjok']))
+        if($d['idMatapelajaran']==5)
             $pjok=1;
     }
 ?>
@@ -46,19 +46,19 @@
                         
                         <td><?=$d['kelas'].' - '.$d['bagian']?></td>
                         <?php if(isset($ppkn)): ?>
-                            <td><?=$d['ppkn']?></td>
+                            <td><?=$d['nilai']?></td>
                         <?php endif; ?>
                         <?php if(isset($bindo)): ?>
-                            <td><?=$d['bindo']?></td>
+                            <td><?=$d['nilai']?></td>
                         <?php endif; ?>
                         <?php if(isset($matematika)): ?>
-                            <td><?=$d['matematika']?></td>
+                            <td><?=$d['nilai']?></td>
                         <?php endif; ?>
                         <?php if(isset($sbdp)): ?>
-                            <td><?=$d['sbdp']?></td>
+                            <td><?=$d['nilai']?></td>
                         <?php endif; ?>
                         <?php if(isset($pjok)): ?>
-                            <td><?=$d['pjok']?></td>
+                            <td><?=$d['nilai']?></td>
                         <?php endif; ?>
                         
                         

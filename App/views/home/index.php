@@ -2,6 +2,7 @@
     <div class="card">
         <div class="card-body">
             <table class="table-bordered">
+            <?php if($data!==NULL) : ?>
             <?php foreach ($data as $d) : ?>
                 <tr>
                     <td class="p-2 pl-3 pr-3"><?=$d['pelajaran']?></td>
@@ -11,6 +12,10 @@
                     </td>
                 </tr>
             <?php endforeach; ?>
+            <?php else: ?>
+                <h5>Kamu sudah mengerjakan semua ^-^</h5>
+                <span class="text-danger">*Jika sudah mengerjakan semua silakan tekan logout yang berada diatas kanan layar</span>
+            <?php endif;?>
             </table>
         </div>
     </div>
