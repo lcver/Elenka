@@ -18,13 +18,13 @@
             <span class="nav-link text-gray-dark text-sm" data-toggle="dropdown">
                 <?= $_SESSION['elenka_username']?> 
             </span>
-            <div class="dropdown-menu dropdown-menu-md">
-                <div class="dropdown-item" data-toggle="dropdown">
-                    <a href="<?=BASEURL?>home/logout" class="btn btn-danger" data-toggle="dropdown">
-                        <i class="fas fa-power-off"></i>
-                        <span>Sign Out</span>
-                    </a>
-                </div>
+            <div class="dropdown-menu dropdown-menu-md text-center dropdown-menu-right position-absolute">
+                    <div class="" data-toggle="dropdown">
+                        <button class="btn btn-danger" onclick="window.location.href='<?=BASEURL?>home/logout'">
+                            <i class="fas fa-power-off"></i>
+                            <span>Sign Out</span>
+                        </button>
+                    </div>
             </div>
         </li>
         <!-- <li class="nav-item"></li> -->
