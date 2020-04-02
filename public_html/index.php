@@ -3,7 +3,7 @@
  * 
  * Require init
  */
-require '../app/init.php';
+require '../App/init.php';
 
 /**
  * 
