@@ -30,6 +30,7 @@ class TampilNilaiModel extends Controller
                                             'tbelenka_kelas.kelas',
                                             'tbelenka_kelas_bagian.bagian'
                                             ])
+                                        ->orderBy('tbelenka_kelas.id asc, tbelenka_kelas_bagian.bagian asc, tbelenka_siswa.nama','asc')
                                         ->get();
     }
         /**
