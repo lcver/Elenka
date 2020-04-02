@@ -45,13 +45,13 @@ class Controller
          */
         $i=0;
         while ($i < $count) {
-            require_once '../app/views/'.$template[$i].'.php';
+            require_once '../App/views/'.$template[$i].'.php';
             $i++;}
     }
 
     public function model($model)
     {
-        require_once '../app/models/' . $model . '.php';
+        require_once '../App/models/' . $model . '.php';
         return new $model;
     }
 }

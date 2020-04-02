@@ -46,7 +46,7 @@ class HomeController extends Controller
     public function auth()
     {
         if(!isset($_SESSION['elenka_usersession'])){
-            $this->view('Auth/index');
+            $this->view('auth/index');
         }
     }
 
@@ -73,7 +73,6 @@ class HomeController extends Controller
         }
 
         header('location:'.BASEURL);
-        exit();
     }
 
     public function logout()

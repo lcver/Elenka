@@ -101,7 +101,7 @@ class AdminController extends Controller
             $data['paketsoal']=NULL;
         }
         
-        $this->view('Admin/arsip',$data,'admin');
+        $this->view('admin/arsip',$data,'admin');
     }
 
     public function arsip_upload()

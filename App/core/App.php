@@ -14,6 +14,7 @@ class App
     public function  __construct()
     {
         $url = $this->parseURL();
+        $url[0] = ucwords($url[0]);
         // var_dump($url);
 
         /**
@@ -26,8 +27,6 @@ class App
             $this->controller = $url[0].'Controller';
             unset($url[0]);
         }
-
-        $this->controller = ucfirst($this->controller);
         
         require_once '../App/controllers/'.$this->controller.'.php';
         $this->controller = new $this->controller;
