@@ -11,6 +11,8 @@ class HomeController extends Controller
         }
 
             $result = $this->model('PaketSoalModel')->show('siswa');
+            // var_dump($result);die();
+
             if(!is_null($result)){
                 $key = array_keys($result);
     
@@ -32,18 +34,6 @@ class HomeController extends Controller
                     endif;
                 // var_dump($data);
                 // die();
-                foreach ($data as $d) {
-                    if($d['idBagian']!=3)
-                    {
-                        if($d['idBagian']==$_SESSION['elenka_usersessoin'])
-                        {
-                            $data[] = $d;
-                        }
-                        else{
-                            $data[] = $d;
-                        }
-                    }
-                }
             }else{
                 $data=NULL;
             }
