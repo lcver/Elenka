@@ -32,7 +32,7 @@ class PaketSoalModel extends Controller
              * 
              * display the specified resource data
              */
-            public function show($condition, $request=[]){
+            public function show($condition, $request=""){
                 switch ($condition) {
                     case 'lastId':
                         $result = Database::table('tbelenka_paket_soal')
@@ -52,9 +52,13 @@ class PaketSoalModel extends Controller
                                                 ->join('tbelenka_kelas_bagian')
                                                 ->on('tbelenka_paket_soal.idBagian','tbelenka_kelas_bagian.id')
                                                 ->join('tbelenka_matapelajaran')
-                                                ->on('tbelenka_paket_soal.idMatapelajaran','tbelenka_matapelajaran.id and NOT EXISTS (select id from tbelenka_nilai_siswa where tbelenka_nilai_siswa.idPaketSoal = tbelenka_paket_soal.id)')
+                                                ->on('tbelenka_paket_soal.idMatapelajaran','tbelenka_matapelajaran.id and tbelenka_paket_soal.id NOT IN (select idPaketSoal from tbelenka_nilai_siswa where tbelenka_nilai_siswa.idSiswa = '.$_SESSION['elenka_usersession'].')')
                                                 ->fetch(['tbelenka_paket_soal.*','tbelenka_kelas.kelas','tbelenka_kelas_bagian.bagian','tbelenka_matapelajaran.pelajaran'])
                                                 ->get();
+                        // $result = Database::table('tbelenka_paket_soal')
+                                                // ->join('tbelenka_nilai_siswa')
+                                                // ->raw('tbelenka_paket_soal.id NOT EXISTS (select * from tbelenka_nilai_siswa where tbelenka_nilai_siswa.idSiswa = '.$_SESSION['elenka_usersession'].')')
+                                                // ->get();
                         break;
                     case 'soalsiswa':
                         $result = Database::table('tbelenka_paket_soal')
