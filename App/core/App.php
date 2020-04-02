@@ -21,7 +21,7 @@ class App
          * Controller url
          */
 
-        if(file_exists('../app/controllers/'.$url[0].'Controller.php'))
+        if(file_exists('../App/controllers/'.$url[0].'Controller.php'))
         {
             $this->controller = $url[0].'Controller';
             unset($url[0]);
@@ -29,7 +29,7 @@ class App
 
         $this->controller = ucfirst($this->controller);
         
-        require_once '../app/controllers/'.$this->controller.'.php';
+        require_once '../App/controllers/'.$this->controller.'.php';
         $this->controller = new $this->controller;
 
         /**
