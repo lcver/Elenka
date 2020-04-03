@@ -17,6 +17,13 @@ class SoalController extends Controller
         $data['soal'] = $this->model('ButirSoalModel')->create($id);
         $data['mapel'] = $mapel['pelajaran'];
         // var_dump($data['mapel']);die();
+
+        /**
+             * set token for user
+             * can't back on answersheet
+             * 
+             */
+            $_SESSION['elenka_token_soal'] = 1;
         
         $this->view('soal/index',$data);
 
@@ -24,6 +31,19 @@ class SoalController extends Controller
 
     public function penilaian()
     {
+
+        /**
+         * check fix 
+         * resend nilai
+         * 
+         */
+        $res = $this->model('NilaiModel')->show($_POST['elenka_idPaketSoal']);
+        
+            if($res!==NULL){
+                header('location:'.BASEURL);
+                return false;
+            }
+        
         $idPaket = $_POST['elenka_idPaketSoal'];
         $result = $this->model('ButirSoalModel')->create($idPaket);
         // var_dump($result);
@@ -41,10 +61,11 @@ class SoalController extends Controller
             $result = $this->model('JawabanModel')->store($data);
         }
 
-        if($result)
-            // header('location:'.BASEURL.'soal/hasil/'.$idPaket);
+        if($result){
             self::hasil($idPaket);
-            // echo "selesai";
+
+            // header('location:'.BASEURL.'soal/hasil/'.$idPaket);
+        }
     }
 
     public function hasil($idPaket)
@@ -54,9 +75,15 @@ class SoalController extends Controller
          */
         $id = $idPaket;
 
+        /**
+         * check token
+         * 
+         */
+        if(!isset($_SESSION['elenka_token_soal'])) 
+            header('location:'.BASEURL);
+
         $result = $this->model('ButirSoalModel')->show($id);
-        // var_dump($result[0]);
-        // die();
+        // var_dump($result[0]);die();
 
         $totalSoal = 0;
         $benar = 0;
@@ -141,6 +168,13 @@ class SoalController extends Controller
         $id = $_GET['url'];
         $id = explode('/',$_GET['url']);
         $id = end($id);
+
+        /**
+         * destroy token soal
+         * 
+         */
+        unset($_SESSION['elenka_token_soal']);
+
 
         /**
          * 
