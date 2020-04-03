@@ -5,13 +5,19 @@ class AdminController extends Controller
 {
     public function index()
     {
-        if(!isset($_SESSION['elenka_adminsession']))
-        {
-            self::auth();
-        }
+        /**
+         * check session
+         * 
+         */
+        if(!isset($_SESSION['elenka_adminsession'])) self::auth();
 
+        /**
+         * show nilai siswa
+         * 
+         */
         $result = $this->model('TampilNilaiModel')->create();
         // var_dump($result);die();
+
         if(!is_null($result)){
             $key = array_keys($result);
 
@@ -43,6 +49,13 @@ class AdminController extends Controller
 
     public function arsip()
     {
+        /**
+         * check session
+         * 
+         */
+        if(!isset($_SESSION['elenka_adminsession'])) self::auth();
+
+        
         $result = $this->model('MapelModel')->show();
         // var_dump($result);
         // die();
@@ -106,6 +119,12 @@ class AdminController extends Controller
 
     public function arsip_upload()
     {
+        /**
+         * check session
+         * 
+         */
+        if(!isset($_SESSION['elenka_adminsession'])) self::auth();
+
         $temporary_file = $_FILES['formfile_elenka_uploadsoal']['tmp_name'];
         $type_file = $_FILES['formfile_elenka_uploadsoal']['type'];
         $name_file = $_FILES['formfile_elenka_uploadsoal']['name'].'_'.date("Ymdhisa").'.xlsx';
