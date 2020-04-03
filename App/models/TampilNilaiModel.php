@@ -21,7 +21,7 @@ class TampilNilaiModel extends Controller
                                         ->join('tbelenka_siswa')
                                         ->on('tbelenka_tampil_nilai.idSiswa','tbelenka_siswa.id')
                                         ->join('tbelenka_kelas')
-                                        ->on('tbelenka_tampil_nilai.idKelas','tbelenka_kelas.id and tbelenka_tampil_nilai='.$_SESSION['elenka_adminkelas'])
+                                        ->on('tbelenka_tampil_nilai.idKelas','tbelenka_kelas.id and tbelenka_kelas.id='.$_SESSION['elenka_adminkelas'])
                                         ->join('tbelenka_kelas_bagian')
                                         ->on('tbelenka_tampil_nilai.idBagian','tbelenka_kelas_bagian.id')
                                         ->fetch([
