@@ -38,22 +38,25 @@
 
                 <div class="col-md-5">
                     <div class="card">
+                        <div class="card-header">
+                            <h1 class=" card-title">Daftar soal - soal</h1>
+                        </div>
                         <div class="card-body">
                             <!-- <div class="row"> -->
                                 <?php if(isset($data['paketsoal'])):?>
                                 <?php foreach ($data['paketsoal'] as $d) : ?>
                                 <div class="col-md-12">
-                                    <div class="info-box" style="min-height:0px;">
+                                    <div class="info-box">
                                         <div class="info-box-content">
                                             <span class="info-box-text text-lg"><?=$d['pelajaran']?></span>
                                         </div>
                                         <!-- /.info-box-content -->
                                         <div class="info-box-more">
-                                            <a class="btn btn-custom-delete text-danger elenkaDeleteButton">
+                                            <a class="btn btn-custom-delete text-muted elenkaDeleteButton" data-target-id="<?=$d['id']?>">
                                                 <!-- <i class="fas fa-minus-circle"></i> -->
                                                 hapus
                                             </a>
-                                            <!-- <button class="btn btn-danger elenkaDeleteButton" data-target-id="<?=$d['id']?>">
+                                            <!-- <button class="btn btn-danger elenkaDeleteButton" data-target-id="<?php//$d['id']?>">
                                             </button> -->
                                         </div>
                                     </div>
