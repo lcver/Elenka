@@ -41,7 +41,7 @@ class Controller
         {
             $template=[$view];
         }
-        $count = count($template);        
+        $count = count($template);
 
         /**
          * 

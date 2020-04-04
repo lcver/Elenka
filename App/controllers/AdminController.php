@@ -85,10 +85,12 @@ class AdminController extends Controller
             $data['mapel']=NULL;
         }
 
+        /**
+         * List Paket Soal
+         */
         $result = $this->model('PaketSoalModel')->show('id');
         // var_dump($result);
         // die();
-        $result = $result===NULL ? NULL : $result;
 
         if(!is_null($result)){
             $key = array_keys($result);
@@ -114,6 +116,11 @@ class AdminController extends Controller
             $data['paketsoal']=NULL;
         }
         
+        /**
+         * 
+         * 
+         */
+
         $this->view('admin/arsip',$data,'admin');
     }
 
@@ -235,6 +242,76 @@ class AdminController extends Controller
 
             $res = $this->model('PaketSoalModel')->destroy($condition);
         }
+    }
+
+    public function soal_view()
+    {
+        /**
+         * get id by link
+         */
+        $id = $_GET['url'];
+        $id = explode('/',$_GET['url']);
+        $id = end($id);
+
+        /**
+         * mata pelajaran
+         * 
+         */
+        $result = $this->model('PaketSoalModel')->show('soalsiswa',$id);
+        if(!is_null($result)){
+            $key = array_keys($result);
+
+            $count = count($key);
+            $num = NULL;
+
+            for ($i=0; $i < $count ; $i++) { 
+                if(is_numeric($key[$i])) $num = true;
+            }
+
+            // foreach ($resultkey as $key) {
+            //     if(!is_numeric($key)) $num = false;
+            // }
+                if(!$num):
+                    $data['matapelajaran'][] = $result;
+                else:
+                    $data['matapelajaran'] = $result;
+                endif;
+            // var_dump($data['matapelajaran']);
+            // die();
+        }else{
+            $data['matapelajaran']=NULL;
+        }
+
+        /**
+         * data soal
+         */
+        $result = $this->model('PaketSoalModel')->show('soalview',$id);
+        if(!is_null($result)){
+            $key = array_keys($result);
+
+            $count = count($key);
+            $num = NULL;
+
+            for ($i=0; $i < $count ; $i++) { 
+                if(is_numeric($key[$i])) $num = true;
+            }
+
+            // foreach ($resultkey as $key) {
+            //     if(!is_numeric($key)) $num = false;
+            // }
+                if(!$num):
+                    $data['soal'][] = $result;
+                else:
+                    $data['soal'] = $result;
+                endif;
+            // var_dump($data['soal']);
+            // die();
+        }else{
+            $data['soal']=NULL;
+        }
+
+
+        $this->view('soal/soalView',$data,'self');
     }
 
     public function auth()

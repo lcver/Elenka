@@ -34,6 +34,11 @@ class PaketSoalModel extends Controller
              */
             public function show($condition, $request=""){
                 switch ($condition) {
+                    case 'soalview':
+                        $result = Database::table('tbelenka_butir_soal')
+                                                        ->where('idPaketSoal',$request)
+                                                        ->get();
+                        break;
                     case 'lastId':
                         $result = Database::table('tbelenka_paket_soal')
                                                 ->orderBy('id','desc limit 1')
@@ -43,6 +48,7 @@ class PaketSoalModel extends Controller
                         $result = Database::table('tbelenka_paket_soal')
                                                 ->join('tbelenka_matapelajaran')
                                                 ->on('tbelenka_paket_soal.idMatapelajaran','tbelenka_matapelajaran.id and idGuru ='.$_SESSION['elenka_adminsession'])
+                                                ->fetch(['tbelenka_paket_soal.*','tbelenka_matapelajaran.pelajaran'])
                                                 ->get();
                         break;
                     case 'siswa':
