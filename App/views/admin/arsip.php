@@ -48,11 +48,11 @@
                                 <div class="col-md-12">
                                     <div class="info-box">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="elenka_soalaktif" class="custom-control-input" id="customCheckbox<?=$d['id']?>" checked>
+                                        <input type="checkbox" class="custom-control-input" id="customCheckbox<?=$d['id']?>" onClick="updateStatusSoal(<?=$d['id']?>)" <?=$d['status']==1 ? "checked" : "";?>>
                                         <label for="customCheckbox<?=$d['id']?>" class="custom-control-label"></label>
                                     </div>
                                         <div class="info-box-content">
-                                            <a href="#" class="elenkaSoalView" data-target-id="<?=$d['id']?>">
+                                            <a href="#soalview" class="elenkaSoalView" data-target-id="<?=$d['id']?>">
                                                 <span class="text-lg"><?=$d['pelajaran']?></span>
                                             </a>
                                         </div>
@@ -80,8 +80,8 @@
             <!-- /.row -->
         </div>
         <!-- /.col -->
-        <div class="col-md-12 mb-5">
-            <div id="soalview"></div>
+        <div class="col-md-12">
+            <div id="soalview" class="pb-5"></div>
         </div>
     </div>
     <!-- /.container -->

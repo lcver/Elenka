@@ -310,10 +310,18 @@ class AdminController extends Controller
             $data['soal']=NULL;
         }
 
-
         $this->view('soal/soalView',$data,'self');
     }
 
+    public function soal_active()
+    {
+        $status = ['status'=>2];
+        $res = $this->model('PaketSoalModel')->show('selectById', $_POST['id']);
+
+        if($res['status']==2) $status = ['status'=>1];
+
+        $res = $this->model('PaketSoalModel')->update('status',$_POST['id'], $status);
+    }
     public function auth()
     {
         if(!isset($_SESSION['elenka_usersession']) && !isset($_SESSION['elenka_adminsession'])){
