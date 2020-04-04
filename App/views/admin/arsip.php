@@ -47,6 +47,10 @@
                                 <?php foreach ($data['paketsoal'] as $d) : ?>
                                 <div class="col-md-12">
                                     <div class="info-box">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="elenka_soalaktif" class="custom-control-input" id="customCheckbox<?=$d['id']?>" checked>
+                                        <label for="customCheckbox<?=$d['id']?>" class="custom-control-label"></label>
+                                    </div>
                                         <div class="info-box-content">
                                             <a href="#" class="elenkaSoalView" data-target-id="<?=$d['id']?>">
                                                 <span class="text-lg"><?=$d['pelajaran']?></span>
