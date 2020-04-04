@@ -125,6 +125,28 @@ class AdminController extends Controller
          */
         if(!isset($_SESSION['elenka_adminsession'])) self::auth();
 
+        /**
+         * check empty field
+         * 
+         */
+        if($_POST['elenka_mapel']==="_BLANK_"):
+            Flasher::setFlash('Pilih Mata Pelajaran!');
+            $err = TRUE;
+        elseif($_FILES['formfile_elenka_uploadsoal']['tmp_name']==="" or $_FILES['formfile_elenka_uploadsoal']['tmp_name']===NULL):
+            Flasher::setFlash('Pilih file upload!');
+            $err = TRUE;
+        endif;
+
+        if($err===TRUE){
+            header('location:'.BASEURL.'admin/arsip');
+            return FALSE;
+        }
+
+
+        /**
+         * set data file
+         * 
+         */
         $temporary_file = $_FILES['formfile_elenka_uploadsoal']['tmp_name'];
         $type_file = $_FILES['formfile_elenka_uploadsoal']['type'];
         $name_file = $_FILES['formfile_elenka_uploadsoal']['name'].'_'.date("Ymdhisa").'.xlsx';
