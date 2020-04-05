@@ -5,8 +5,15 @@ class HomeController extends Controller
 {
     public function index()
     {
-        if(!isset($_SESSION['elenka_usersession'])) self::auth();
-
+        /**
+         * check session
+         * 
+         */
+        if(!isset($_SESSION['elenka_usersession'])){
+            self::auth();
+            return false;
+        }
+    
             $result = $this->model('PaketSoalModel')->show('siswa');
             // var_dump($result);die();
 

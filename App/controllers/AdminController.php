@@ -9,7 +9,10 @@ class AdminController extends Controller
          * check session
          * 
          */
-        if(!isset($_SESSION['elenka_adminsession'])) self::auth();
+        if(!isset($_SESSION['elenka_adminsession'])){
+            self::auth();
+            return false;
+        }
 
         /**
          * show nilai siswa
