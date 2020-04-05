@@ -95,7 +95,7 @@ class PaketSoalModel extends Controller
                          */
                         public function destroy($request){
                             return Database::table('tbelenka_paket_soal')
-                                                    ->raw('idMatapelajaran = '.$request['idMatapelajaran'].' and idGuru = '.$request['idGuru'])
+                                                    ->raw('id = '.$request['id'].' and idGuru = '.$request['idGuru'])
                                                     ->delete();
                         }
 }
