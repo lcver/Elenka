@@ -14,3 +14,8 @@ $(".elenkaDeleteButton").on("click", function(e) {
         });
     }
 })
+
+$(".elenkaSoalView").on('click', function(e) {
+    var idTarget = $(this).attr('data-target-id');
+    $("#soalview").load('soal_view/'+idTarget);
+})

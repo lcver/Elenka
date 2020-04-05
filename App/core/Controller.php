@@ -37,7 +37,11 @@ class Controller
                 'Template/siswa/footer'
             ];
         }
-        $count = count($template);        
+        elseif($category==="self")
+        {
+            $template=[$view];
+        }
+        $count = count($template);
 
         /**
          * 

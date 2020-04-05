@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="col-md-5">
-                    <div class="card">
+                    <div class="card bg-transparent shadow-none">
                         <div class="card-header">
                             <h1 class=" card-title">Daftar soal - soal</h1>
                         </div>
@@ -48,7 +48,9 @@
                                 <div class="col-md-12">
                                     <div class="info-box">
                                         <div class="info-box-content">
-                                            <span class="info-box-text text-lg"><?=$d['pelajaran']?></span>
+                                            <a href="#" class="elenkaSoalView" data-target-id="<?=$d['id']?>">
+                                                <span class="text-lg"><?=$d['pelajaran']?></span>
+                                            </a>
                                         </div>
                                         <!-- /.info-box-content -->
                                         <div class="info-box-more">
@@ -71,6 +73,13 @@
                     </div>
                 </div>
             </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-12 mb-5">
+            <div id="soalview"></div>
         </div>
     </div>
+    <!-- /.container -->
 </div>
+<!-- /.pt -->

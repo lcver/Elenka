@@ -22,3 +22,10 @@
 .info-box:hover .btn-custom-delete{
     color: red!important;    
 }
+
+.soal-nomor{
+    padding-right: 10px;
+}
+.soal-jawaban{
+    padding-left: 25px;
+}
