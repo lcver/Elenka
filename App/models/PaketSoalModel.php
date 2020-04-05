@@ -34,6 +34,11 @@ class PaketSoalModel extends Controller
              */
             public function show($condition, $request=""){
                 switch ($condition) {
+                    case 'selectById':
+                        $result = Database::table('tbelenka_paket_soal')
+                                                ->where('id',$request)
+                                                ->get();
+                        break;
                     case 'soalview':
                         $result = Database::table('tbelenka_butir_soal')
                                                         ->where('idPaketSoal',$request)
@@ -56,7 +61,7 @@ class PaketSoalModel extends Controller
                                                 ->join('tbelenka_kelas')
                                                 ->on('tbelenka_paket_soal.idKelas ='.$_SESSION['elenka_userkelas'].' and tbelenka_paket_soal.idKelas','tbelenka_kelas.id')
                                                 ->join('tbelenka_kelas_bagian')
-                                                ->on('tbelenka_paket_soal.idBagian','tbelenka_kelas_bagian.id')
+                                                ->on('tbelenka_paket_soal.status = 1 and tbelenka_paket_soal.idBagian',"tbelenka_kelas_bagian.id")
                                                 ->join('tbelenka_matapelajaran')
                                                 ->on('tbelenka_paket_soal.idMatapelajaran','tbelenka_matapelajaran.id and tbelenka_paket_soal.id NOT IN (select idPaketSoal from tbelenka_nilai_siswa where tbelenka_nilai_siswa.idSiswa = '.$_SESSION['elenka_usersession'].')')
                                                 ->fetch(['tbelenka_paket_soal.*','tbelenka_kelas.kelas','tbelenka_kelas_bagian.bagian','tbelenka_matapelajaran.pelajaran'])
@@ -88,7 +93,20 @@ class PaketSoalModel extends Controller
                      * 
                      * update the specified resource data
                      */
-                    public function update($id){}
+                    public function update($condition,$id, $request=[]){
+                        switch ($condition) {
+                            case 'status':
+                                $result = Database::table('tbelenka_paket_soal')
+                                                        ->where('id',$id)
+                                                        ->update($request);
+                                break;
+                            
+                            // default:
+                            //     # code...
+                            //     break;
+                        }
+                        return $result;
+                    }
                         /**
                          * 
                          * remove specified resource data
