@@ -238,7 +238,7 @@ class AdminController extends Controller
     public function arsip_reset()
     {
         if(isset($_SESSION['elenka_adminsession'])){
-            $condition = ['idMatapelajaran'=>$_POST['id'],'idGuru'=>$_SESSION['elenka_adminsession']];
+            $condition = ['id'=>$_POST['id'],'idGuru'=>$_SESSION['elenka_adminsession']];
 
             $res = $this->model('PaketSoalModel')->destroy($condition);
         }
