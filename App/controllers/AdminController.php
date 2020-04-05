@@ -136,6 +136,7 @@ class AdminController extends Controller
          * check empty field
          * 
          */
+        $err=false;
         if($_POST['elenka_mapel']==="_BLANK_"):
             Flasher::setFlash('Pilih Mata Pelajaran!');
             $err = TRUE;
