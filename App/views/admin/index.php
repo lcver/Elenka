@@ -72,7 +72,7 @@
                             <td><?=$d['ips']?></td>
                         <?php endif; ?>
                     </tr>
-                <?php elseif ($_SESSION['elenka_adminbagian']==3): ?>
+                <?php elseif ($_SESSION['elenka_adminbagian']==3): $no++;?>
                     <tr>
                         <td><?=$no?></td>
                         <td><?=$d['nama']?></td>
