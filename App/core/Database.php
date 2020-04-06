@@ -48,7 +48,11 @@ class Database
      */
     public static function table($table)
     {
-        self::$sql="";
+        /**
+         * renewed
+         */
+        self::$sql = NULL;
+        
         self::$sql['table'] = $table;
         return new self;
     }
