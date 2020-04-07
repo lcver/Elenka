@@ -1,0 +1,13 @@
+{
+    "name": "lcver/elenka",
+    "description": "Elenka",
+    "authors": [
+        {
+            "name": "lcver",
+            "email": "crackover1092@gmail.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.11"
+    }
+}

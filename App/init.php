@@ -3,7 +3,13 @@
  * 
  * call config
  */
-require_once '../App/config/config.php';
+require_once 'config/config.php';
+
+/**
+ * call autoload
+ */
+require_once '../vendor/autoload.php';
+
 
 /**
  * 
