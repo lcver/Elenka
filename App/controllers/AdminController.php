@@ -162,7 +162,14 @@ class AdminController extends Controller
         $type_file = $_FILES['formfile_elenka_uploadsoal']['type'];
         $name_file = $_FILES['formfile_elenka_uploadsoal']['name'].'_'.date("Ymdhisa").'.xlsx';
         // echo $name_file;
-        
+        /**
+         * xlsx
+         * application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+         * xls
+         * application/vnd.ms-excel
+         * csv
+         * application/vnd.ms-excel
+         */
         // die();
 
         // echo $type_file;
@@ -172,57 +179,81 @@ class AdminController extends Controller
 
             if(move_uploaded_file($temporary_file,$target_file))
             {
-                chmod($target_file,0777); // permission to read,write,execute,rewrite
-                
-                require "../App/vendor/spreadsheetreader/ExcelReader/excel_reader2.php";
-                require "../App/vendor/spreadsheetreader/SpreadsheetReader.php";
+                /**
+                 * persission
+                 * read, write, execute, rewrite
+                 */
+                chmod($target_file,0777);
 
-                $Spreadsheet = new SpreadsheetReader($target_file);
+                /**
+                 * filter file type
+                 */
+                if($type_file==="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"):
+                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+                elseif (condition):
+                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+                endif;
+
+                $Spreadsheet = $reader->load($target_file);
                 // var_dump($Spreadsheet);
                 
-                $Sheets = $Spreadsheet -> Sheets(2);
-
+                $sheetData = $Spreadsheet->getActiveSheet()->toArray();
+                
                 /**
                  * set data
                  * Paket soal
                  */
-                $data = [
+                $dataPaket = [
                     'idGuru' => $_SESSION['elenka_adminsession'],
                     'idMatapelajaran' => $_POST['elenka_mapel'],
                     'idKelas' => $_SESSION['elenka_adminkelas'],
                     'idBagian' => $_SESSION['elenka_adminbagian']
                 ];
-                // var_dump($data);
+                // var_dump($dataPaket);
                 // die();
 
-                if($res = $this->model('PaketSoalModel')->store($data)){
+                if($res = $this->model('PaketSoalModel')->store($dataPaket)){
 
                     $res = $this->model('PaketSoalModel')->show('lastId');
-
-                    foreach ($Spreadsheet as $key => $value) {
-                        if( $key < 1 ) continue;
-
-                        if($value[1]!==""){
-                            $data = [
-                                'idPaketSoal' => $res['id'],
-                                'pertanyaan' => $value[1],
-                                'a' => $value[2],
-                                'b' => $value[3],
-                                'c' => $value[4],
-                                'kunciJawaban' => $value[5],
-                            ];
-                            // var_dump($data);
-                            
-                            $result = $this->model('ButirSoalModel')->store($data);
-                            // var_dump($result);die();
-
-                            if($result){
-                                Flasher::setFlash('File berhasil diupload', true);
-                            }else{
-                                Flasher::setFlash('Gagal! silakan hubungi Administrator', False);
-                                unlink($target_file);
+                    foreach ($sheetData as $key => $value) {
+                        /**
+                         * get array key
+                         */
+                        if($key < 1){
+                            $pertanyaan = implode(' ',array_keys($value,'pertanyaan'));
+                            $a = implode(' ',array_keys($value,'a'));
+                            $b = implode(' ',array_keys($value,'b'));
+                            $c = implode(' ',array_keys($value,'c'));
+                            $kunci = implode(' ',array_keys($value,'kunci'));
+                        }else{
+                            /**
+                             * check null rows
+                             */
+                            if($value[$pertanyaan]!==NULL){
+                                /**
+                                 * get data from file
+                                 */
+                                $dataSoal = [
+                                    'idPaketSoal' => $res['id'],
+                                    'pertanyaan' => $value[$pertanyaan],
+                                    'a' => $value[$a],
+                                    'b' => $value[$b],
+                                    'c' => $value[$c],
+                                    'kunciJawaban' => $value[$kunci],
+                                ];
+                                $result = $this->model('ButirSoalModel')->store($dataSoal);
+                                // var_dump($result);die();
                             }
                         }
+                    }
+                    // var_dump($dataSoal);
+                    // die();
+
+                    if($result){
+                        Flasher::setFlash('File berhasil diupload', true);
+                    }else{
+                        Flasher::setFlash('Gagal! silakan hubungi Administrator', False);
+                        unlink($target_file);
                     }
                 }
             }else{
