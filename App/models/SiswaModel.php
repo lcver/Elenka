@@ -13,7 +13,15 @@ class SiswaModel extends Controller
      * 
      * create view resource data
      */
-    public function create(){}
+    public function create(){
+        return Database::table('tbelenka_siswa')
+                                    ->join('tbelenka_kelas')
+                                    ->on('tbelenka_siswa.idKelas','tbelenka_kelas.id and tbelenka_siswa.idKelas='.$_SESSION['elenka_adminkelas'])
+                                    ->join('tbelenka_kelas_bagian')
+                                    ->on('tbelenka_siswa.idBagian','tbelenka_kelas_bagian.id')
+                                    ->orderBy('tbelenka_kelas_bagian.id asc, tbelenka_siswa.nama','asc')
+                                    ->get();
+    }
         /**
          * 
          * stored new resourece data
