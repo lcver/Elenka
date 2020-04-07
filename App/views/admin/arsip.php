@@ -58,7 +58,8 @@
                                         </div>
                                         <!-- /.info-box-content -->
                                         <div class="info-box-more">
-                                            <a class="btn btn-custom-delete text-muted elenkaDeleteButton" data-target-id="<?=$d['id']?>">
+                                            <a class="btn btn-custom-delete elenka_delete_button" data-toggle="modal" data-target="#elenka_modal_delete" data-target-id="<?=$d['id']?>">
+                                            <!-- <a class="btn btn-custom-delete text-muted elenkaDeleteButton" class="btn btn-custom-delete text-muted" data-toggle="modal" data-target="#modal-sm"> -->
                                                 <!-- <i class="fas fa-minus-circle"></i> -->
                                                 hapus
                                             </a>
@@ -87,3 +88,26 @@
     <!-- /.container -->
 </div>
 <!-- /.pt -->
+
+<div class="modal fade" id="elenka_modal_delete">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h4 class="modal-title">Small Modal</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div> -->
+            <div class="modal-body pb-0">
+                <p class="text-lg">Ingin menghapus paket soal?</p>
+            </div>
+            <div class="modal-footer justify-content-between border-top-0">
+                <button type="button" class="btn btn-sm btn-danger" id="elenka_delete_confirm">Hapus</button>
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+    </div>
+<!-- /.modal -->
