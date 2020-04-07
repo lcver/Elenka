@@ -141,10 +141,10 @@ class AdminController extends Controller
          */
         $err=false;
         if($_POST['elenka_mapel']==="_BLANK_"):
-            Flasher::setFlash('Pilih Mata Pelajaran!');
+            Flasher::setFlash('Pilih Mata Pelajaran!',false);
             $err = TRUE;
         elseif($_FILES['formfile_elenka_uploadsoal']['tmp_name']==="" or $_FILES['formfile_elenka_uploadsoal']['tmp_name']===NULL):
-            Flasher::setFlash('Pilih file upload!');
+            Flasher::setFlash('Pilih file upload!',false);
             $err = TRUE;
         endif;
 
@@ -198,6 +198,8 @@ class AdminController extends Controller
                 // var_dump($Spreadsheet);
                 
                 $sheetData = $Spreadsheet->getActiveSheet()->toArray();
+                // var_dump($sheetData);
+                // die();
                 
                 /**
                  * set data
@@ -268,6 +270,37 @@ class AdminController extends Controller
         // echo chmod($name_file,0777);
         header('location:'.BASEURL.'Admin/arsip');
 
+    }
+
+    public function arsip_upload_pict()
+    {
+        $id = $_POST['elenka_idSoal'];
+        $idPaketSoal = $_POST['elenka_idPaketSoal'];
+
+        $extension = explode('.',$_FILES['elenka_uploadgambar'.$id]['name']);
+        $extension = end($extension);
+        $name_file = $id."_".$idPaketSoal.'.'.$extension;
+        $size = $_FILES['elenka_uploadgambar'.$id]['size'];
+
+        $target_file = '../public_html/img/soal_gambar/'.$name_file;
+        // var_dump($_FILES);die();
+        
+        if($size > 2000000){
+            $tmp = $_FILES['elenka_uploadgambar'.$id]['tmp_name'];
+            if(move_uploaded_file($tmp,$target_file))
+            {
+                $data = ['gambar'=>$name_file];
+                if($this->model('ButirSoalModel')->update($id,$data))
+                {
+                    Flasher::setFlash('Berhasil mengupload gambar', true);
+                }
+            }else{
+                Flasher::setFlash('Gagal mengupload gambar', false);
+            }
+        }else{
+            Flasher::setFlash('Ukuran gambar terlalu besar', false);
+        }
+        header('location:'.BASEURL.'admin/arsip');
     }
 
     public function arsip_reset()
@@ -345,7 +378,7 @@ class AdminController extends Controller
             $data['soal']=NULL;
         }
 
-        $this->view('soal/soalView',$data,'self');
+        $this->view('admin/soalView',$data,'self');
     }
 
     public function soal_active()

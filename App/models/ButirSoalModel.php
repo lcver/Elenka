@@ -44,7 +44,11 @@ class ButirSoalModel extends Controller
                      * 
                      * update the specified resource data
                      */
-                    public function update($id){}
+                    public function update($id, $request=[]){
+                        return Database::table('tbelenka_butir_soal')
+                                                    ->where('id',$id)
+                                                    ->update($request);
+                    }
                         /**
                          * 
                          * remove specified resource data
