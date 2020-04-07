@@ -3,6 +3,7 @@
 # ignore an entire directory
 public_html/plugins/
 public_html/soal/
+public_html/img/soal_gambar/
 App/vendor/
 
 # ignore a file type
