@@ -18,6 +18,11 @@
                     <span class="text-lg"><?=$d['pertanyaan']?> . . .</span>
                 </div>
             </div>
+            <div class="form-gambar">
+                <?php if(isset($d['gambar'])) : ?>
+                    <img src="<?=BASEURL?>img/soal_gambar/<?=$d['gambar']?>" alt="<?=$d['gambar']?>" class="img-thumbnail" style="max-height:250px">
+                <?php endif; ?>
+            </div>
 
             <div class="form-answer">
                 <div class="form-group">
