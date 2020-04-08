@@ -33,3 +33,15 @@ function uploadGambarSoal(id){
     console.log(id);
     toggleBtn.toggleClass('d-none');
 }
+
+function deleteGambarSoal(id,idTarget){
+    $.ajax({
+        type: "POST",
+        url: "arsip_pict_delete",
+        data: {id:id,idPaket:idTarget},
+        success: function(){
+            $("#soalview").load('soal_view/'+idTarget);
+        }
+    });
+    console.log(idTarget);
+}

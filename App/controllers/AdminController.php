@@ -284,8 +284,8 @@ class AdminController extends Controller
 
         $target_file = '../public_html/img/soal_gambar/'.$name_file;
         // var_dump($_FILES);die();
-        
-        if($size > 2000000){
+
+        if($size < 2000000){
             $tmp = $_FILES['elenka_uploadgambar'.$id]['tmp_name'];
             if(move_uploaded_file($tmp,$target_file))
             {
@@ -301,6 +301,24 @@ class AdminController extends Controller
             Flasher::setFlash('Ukuran gambar terlalu besar', false);
         }
         header('location:'.BASEURL.'admin/arsip');
+    }
+
+    public function arsip_pict_delete()
+    {
+        $id = $_POST['id'];
+        $idPaket = $_POST['idPaket'];
+        // var_dump($_POST);die();
+        if($this->model('ButirSoalModel')->update($id,['gambar'=>NULL]))
+        {
+            $filename = $id.'_'.$idPaket;
+            $files = glob('../public_html/img/soal_gambar/'.$filename.'.{jpg,png,gif}', GLOB_BRACE);
+            if(unlink($files[0])){
+                echo "berhasil";
+            }else{
+                echo "gagal menghapus";
+            }
+        }
+
     }
 
     public function arsip_reset()

@@ -17,7 +17,7 @@
                 <form action="<?=BASEURL?>admin/arsip_upload_pict" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                     <h5 class="clearfix soal-pertanyaan"><span class="soal-nomor"><?=$no?></span><?=$d['pertanyaan']?>?</h5>
-                    <?php if($d['gambar']===NULL):?>
+                    <?php if($d['gambar']==NULL):?>
                     <div class="form-group col-md-3">
                         <div class="input-group">
                             <div class="custom-file">
@@ -31,6 +31,9 @@
                     <?php else: ?>
                     <div class="col-md-12 clearfix">
                         <img src="<?=BASEURL?>img/soal_gambar/<?=$d['gambar']?>" alt="gambar-<?=$d['gambar']?>" class="img-thumbnail" style="max-height:250px">
+                        <div class="col-md-12">
+                            <a href="#soalview" onClick="deleteGambarSoal(<?=$d['id']?>,<?=$d['idPaketSoal']?>)">hapus</a>
+                        </div>
                     </div>
                     <?php endif;?>
                     <div class="soal-jawaban">
