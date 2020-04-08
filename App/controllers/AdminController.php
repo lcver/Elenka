@@ -244,6 +244,7 @@ class AdminController extends Controller
                                     'kunciJawaban' => $value[$kunci],
                                 ];
                                 $result = $this->model('ButirSoalModel')->store($dataSoal);
+                                unlink($target_file);
                                 // var_dump($result);die();
                             }
                         }
@@ -255,7 +256,6 @@ class AdminController extends Controller
                         Flasher::setFlash('File berhasil diupload', true);
                     }else{
                         Flasher::setFlash('Gagal! silakan hubungi Administrator', False);
-                        unlink($target_file);
                     }
                 }
             }else{
