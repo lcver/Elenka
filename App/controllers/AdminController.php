@@ -244,11 +244,12 @@ class AdminController extends Controller
                                     'kunciJawaban' => $value[$kunci],
                                 ];
                                 $result = $this->model('ButirSoalModel')->store($dataSoal);
-                                unlink($target_file);
                                 // var_dump($result);die();
                             }
                         }
-                    }
+                    } // endforeach
+                    
+                    unlink($target_file);
                     // var_dump($dataSoal);
                     // die();
 
