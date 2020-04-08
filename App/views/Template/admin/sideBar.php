@@ -45,15 +45,6 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="<?=BASEURL?>admin/listsiswa" class="nav-link">
-              <i class="nav-icon fas fa-user-graduate"></i>
-              <p>
-                Daftar Siswa
-                <span class="right badge badge-danger">Inprogres</span>
-              </p>
-            </a>
-          </li>
           <!--<li class="nav-item">-->
           <!--  <a href="<?=BASEURL?>Admin/report" class="nav-link">-->
           <!--    <i class="nav-icon far fa-file-pdf"></i>-->
