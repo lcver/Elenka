@@ -409,6 +409,38 @@ class AdminController extends Controller
 
         $res = $this->model('PaketSoalModel')->update('status',$_POST['id'], $status);
     }
+
+    public function listsiswa()
+    {
+        $result = $this->model('SiswaModel')->create();
+        if(!is_null($result)){
+            $key = array_keys($result);
+
+            $count = count($key);
+            $num = NULL;
+
+            for ($i=0; $i < $count ; $i++) { 
+                if(is_numeric($key[$i])) $num = true;
+            }
+
+            // foreach ($resultkey as $key) {
+            //     if(!is_numeric($key)) $num = false;
+            // }
+                if(!$num):
+                    $data[] = $result;
+                else:
+                    $data = $result;
+                endif;
+            // var_dump($data);
+            // die();
+        }else{
+            $data=NULL;
+        }
+
+        $this->view('admin/siswa',$data,'admin');
+    }
+
+
     public function auth()
     {
         if(!isset($_SESSION['elenka_usersession']) && !isset($_SESSION['elenka_adminsession'])){
