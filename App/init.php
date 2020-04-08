@@ -22,8 +22,8 @@ spl_autoload_register(function ($class_name) {
     // Class folder name
     $sub="";
     $i = count($class_name)-2;
-    if( in_array('Core',$class_name) || $i < 0 ){
-        $sub = "/Core";
+    if( in_array('core',$class_name) || $i < 0 ){
+        $sub = "/core";
     }
 
     // Class name
