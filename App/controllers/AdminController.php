@@ -198,8 +198,6 @@ class AdminController extends Controller
                 // var_dump($Spreadsheet);
                 
                 $sheetData = $Spreadsheet->getActiveSheet()->toArray();
-                // var_dump($sheetData);
-                // die();
                 
                 /**
                  * set data
@@ -226,7 +224,17 @@ class AdminController extends Controller
                             $a = implode(' ',array_keys($value,'a'));
                             $b = implode(' ',array_keys($value,'b'));
                             $c = implode(' ',array_keys($value,'c'));
-                            $kunci = implode(' ',array_keys($value,'kunci'));
+
+                            // mencari array values kunci
+                            $i = 0;
+                            foreach ($value as $d) { $i++;
+                                if($pm = preg_match("/[k|K]unci/i",$d))
+                                {
+                                    $i -= 1;
+                                    break;
+                                }
+                            }
+                            $kunci = implode(' ',array_keys($value,$value[$i]));
                         }else{
                             /**
                              * check null rows
@@ -249,7 +257,7 @@ class AdminController extends Controller
                         }
                     } // endforeach
                     
-                    unlink($target_file);
+                    // unlink($target_file);
                     // var_dump($dataSoal);
                     // die();
 
