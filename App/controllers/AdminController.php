@@ -198,6 +198,8 @@ class AdminController extends Controller
                 // var_dump($Spreadsheet);
                 
                 $sheetData = $Spreadsheet->getActiveSheet()->toArray();
+                // var_dump($sheetData);
+                // die();
                 
                 /**
                  * set data
@@ -220,21 +222,24 @@ class AdminController extends Controller
                          * get array key
                          */
                         if($key < 1){
-                            $pertanyaan = implode(' ',array_keys($value,'pertanyaan'));
+
+                            // mencari array values kunci
+                            $valueCount = count($value);
+                            // var_dump($valueCount);
+
+                            for ($i=0; $i < $valueCount; $i++) { 
+                                // Pertanyaan
+                                if(preg_match("/pertanyaan/i",$value[$i])) $pertanyaan = $i;
+
+                                // Kunci Jawaban
+                                if(preg_match("/kunci/i",$value[$i])) $kunci = $i;
+                            }
+
+                            // $pertanyaan = implode(' ',array_keys($value,'pertanyaan'));
                             $a = implode(' ',array_keys($value,'a'));
                             $b = implode(' ',array_keys($value,'b'));
                             $c = implode(' ',array_keys($value,'c'));
 
-                            // mencari array values kunci
-                            $i = 0;
-                            foreach ($value as $d) { $i++;
-                                if($pm = preg_match("/[k|K]unci/i",$d))
-                                {
-                                    $i -= 1;
-                                    break;
-                                }
-                            }
-                            $kunci = implode(' ',array_keys($value,$value[$i]));
                         }else{
                             /**
                              * check null rows
