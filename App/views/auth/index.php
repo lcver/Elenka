@@ -21,13 +21,19 @@
         </div>
         <?=Flasher::get()?>
         <div class="row">
-          <!-- /.col -->
           <div class="col-12">
             <button type="submit" class="btn btn-primary btn-block">Sign In</button>
           </div>
           <!-- /.col -->
         </div>
+        <!-- /.row -->
       </form>
-    <!-- /.login-card-body -->
+  </div>
+  <!-- /.login-card-body -->
+  <div class="card-footer bg-transparent">
+    <div class="text-center">
+      Copyright &copy;Lucver
+      <span class="text-bold text-sm text-">HAK MILIK PRIBADI</span>
+    </div>
   </div>
 </div>
