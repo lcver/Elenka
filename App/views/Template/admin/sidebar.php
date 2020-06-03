@@ -48,7 +48,7 @@
           <li class="nav-item">
             <!-- <a href="#" class="nav-link"> -->
             <a href="<?=BASEURL?>admin/listsiswa" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
+              <i class="nav-icon fas fa-graduation-cap"></i>
               <p>
                 Daftar Siswa
                 <span class="right badge badge-danger">New</span>
@@ -56,11 +56,12 @@
             </a>
           </li>
           <li class="nav-item">
-           <a href="<?=BASEURL?>Admin/report" class="nav-link">
+           <a href="#" class="nav-link">
              <i class="nav-icon far fa-file-pdf"></i>
              <p>
                Laporan
              </p>
+             <span class="right badge badge-danger">New</span>
            </a>
           </li>
         </ul>

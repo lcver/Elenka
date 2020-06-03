@@ -18,6 +18,14 @@
 ?>
 <div class="card overflow-auto ">
     <div class="card-body">
+        <div class="menu text-right">
+            <button class="btn btn-custom-delete text-blue">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+            <button class="btn btn-custom-delete text-red">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+        </div>
         <table class="table table-striped">
             <thead class=" thead-light">
                 <tr>
